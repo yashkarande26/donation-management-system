@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Cause - DonationHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+
+        <a href="{{ url_for('home') }}" class="logo">
+            Donation<span>Hub</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('donors') }}">Donors</a>
+            <a href="{{ url_for('causes') }}">Causes</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Main Form Section -->
+    <section class="donor-form-section">
+
+        <div class="form-container">
+
+            <p class="section-tag">
+                EDIT CAUSE
+            </p>
+
+            <h1>Update Cause Information</h1>
+
+            <p class="form-description">
+                Modify the cause details below and save the changes.
+            </p>
+
+
+            <!-- Edit Cause Form -->
+            <form method="POST">
+
+                <div class="form-grid">
+
+
+                    <!-- Cause Name -->
+                    <div class="form-group">
+
+                        <label>Cause Name</label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            value="{{ cause.name }}"
+                            required>
+
+                    </div>
+
+
+                    <!-- Target Amount -->
+                    <div class="form-group">
+
+                        <label>Target Amount</label>
+
+                        <input
+                            type="number"
+                            name="target_amount"
+                            value="{{ cause.target_amount }}"
+                            required>
+
+                    </div>
+
+
+                    <!-- Description -->
+                    <div class="form-group full-width">
+
+                        <label>Description</label>
+
+                        <textarea
+                            name="description"
+                            rows="4">{{ cause.description or '' }}</textarea>
+
+                    </div>
+
+
+                    <!-- Category -->
+                    <div class="form-group">
+
+    <label>Category</label>
+
+    <select name="category">
+
+        <option value="">
+            Select Category
+        </option>
+
+        <option value="Education"
+            {% if cause.category == "Education" %}selected{% endif %}>
+            Education
+        </option>
+
+        <option value="Healthcare"
+            {% if cause.category == "Healthcare" %}selected{% endif %}>
+            Healthcare
+        </option>
+
+        <option value="Food"
+            {% if cause.category == "Food" %}selected{% endif %}>
+            Food
+        </option>
+
+        <option value="Environment"
+            {% if cause.category == "Environment" %}selected{% endif %}>
+            Environment
+        </option>
+
+        <option value="Emergency"
+            {% if cause.category == "Emergency" %}selected{% endif %}>
+            Emergency
+        </option>
+
+        <option value="Other"
+            {% if cause.category == "Other" %}selected{% endif %}>
+            Other
+        </option>
+
+    </select>
+
+</div>
+
+
+                    <!-- Location -->
+                    <div class="form-group">
+
+                        <label>Location</label>
+
+                        <input
+                            type="text"
+                            name="location"
+                            value="{{ cause.location or '' }}">
+
+                    </div>
+
+
+                    <!-- Start Date -->
+                    <div class="form-group">
+
+                        <label>Start Date</label>
+
+                        <input
+                            type="date"
+                            name="start_date"
+                            value="{{ cause.start_date or '' }}">
+
+                    </div>
+
+
+                    <!-- End Date -->
+                    <div class="form-group">
+
+                        <label>End Date</label>
+
+                        <input
+                            type="date"
+                            name="end_date"
+                            value="{{ cause.end_date or '' }}">
+
+                    </div>
+
+                </div>
+
+
+                <!-- Form Buttons -->
+                <div class="form-buttons">
+
+                    <a href="{{ url_for('causes') }}"
+                       class="cancel-btn">
+                        Cancel
+                    </a>
+
+                    <button type="submit"
+                            class="submit-btn">
+                        Update Cause
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Donation Management System |
+            Developed by Yash Karande
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

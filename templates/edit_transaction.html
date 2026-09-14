@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Transaction - DonationHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+
+        <a href="{{ url_for('home') }}"
+           class="logo">
+
+            Donation<span>Hub</span>
+
+        </a>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('donors') }}">
+                Donors
+            </a>
+
+            <a href="{{ url_for('causes') }}">
+                Causes
+            </a>
+
+            <a href="{{ url_for('transactions') }}"
+               class="active">
+                Transactions
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Main Form Section -->
+    <section class="donor-form-section">
+
+        <div class="form-container">
+
+            <p class="section-tag">
+                EDIT TRANSACTION
+            </p>
+
+            <h1>
+                Update Transaction
+            </h1>
+
+            <p class="form-description">
+                Modify the donation transaction details below.
+            </p>
+
+
+            <!-- Edit Transaction Form -->
+            <form method="POST">
+
+                <div class="form-grid">
+
+
+                    <!-- Select Donor -->
+                    <div class="form-group">
+
+                        <label>
+                            Select Donor
+                        </label>
+
+                        <select name="donor_id"
+                                required>
+
+                            {% for donor in donors %}
+
+                            <option value="{{ donor.id }}"
+                                {% if donor.id == transaction.donor_id %}
+                                    selected
+                                {% endif %}>
+
+                                {{ donor.first_name }}
+                                {{ donor.last_name }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Select Cause -->
+                    <div class="form-group">
+
+                        <label>
+                            Select Cause
+                        </label>
+
+                        <select name="cause_id"
+                                required>
+
+                            {% for cause in causes %}
+
+                            <option value="{{ cause.id }}"
+                                {% if cause.id == transaction.cause_id %}
+                                    selected
+                                {% endif %}>
+
+                                {{ cause.name }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Donation Amount -->
+                    <div class="form-group">
+
+                        <label>
+                            Donation Amount
+                        </label>
+
+                        <input type="number"
+                               name="amount"
+                               value="{{ transaction.amount }}"
+                               step="0.01"
+                               required>
+
+                    </div>
+
+
+                    <!-- Payment Method -->
+                    <div class="form-group">
+
+                        <label>
+                            Payment Method
+                        </label>
+
+                        <select name="payment_method">
+
+                            <option value="">
+                                Select Payment Method
+                            </option>
+
+                            <option value="Cash"
+                                {% if transaction.payment_method == "Cash" %}
+                                    selected
+                                {% endif %}>
+                                Cash
+                            </option>
+
+                            <option value="UPI"
+                                {% if transaction.payment_method == "UPI" %}
+                                    selected
+                                {% endif %}>
+                                UPI
+                            </option>
+
+                            <option value="Credit Card"
+                                {% if transaction.payment_method == "Credit Card" %}
+                                    selected
+                                {% endif %}>
+                                Credit Card
+                            </option>
+
+                            <option value="Debit Card"
+                                {% if transaction.payment_method == "Debit Card" %}
+                                    selected
+                                {% endif %}>
+                                Debit Card
+                            </option>
+
+                            <option value="Bank Transfer"
+                                {% if transaction.payment_method == "Bank Transfer" %}
+                                    selected
+                                {% endif %}>
+                                Bank Transfer
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Receipt Number -->
+                    <div class="form-group full-width">
+
+                        <label>
+                            Receipt Number
+                        </label>
+
+                        <input type="text"
+                               name="receipt_number"
+                               value="{{ transaction.receipt_number or '' }}">
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- Form Buttons -->
+                <div class="form-buttons">
+
+                    <a href="{{ url_for('transactions') }}"
+                       class="cancel-btn">
+
+                        Cancel
+
+                    </a>
+
+                    <button type="submit"
+                            class="submit-btn">
+
+                        Update Transaction
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Donation Management System |
+            Developed by Yash Karande
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Transaction - DonationHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+
+        <a href="{{ url_for('home') }}" class="logo">
+            Donation<span>Hub</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('donors') }}">Donors</a>
+            <a href="{{ url_for('causes') }}">Causes</a>
+            <a href="{{ url_for('transactions') }}">
+                Transactions
+            </a>
+        </div>
+
+    </nav>
+
+
+    <!-- Transaction Form -->
+    <section class="donor-form-section">
+
+        <div class="form-container">
+
+            <p class="section-tag">
+                NEW DONATION
+            </p>
+
+            <h1>Add New Transaction</h1>
+
+            <p class="form-description">
+                Record a new donation by selecting a donor and cause.
+            </p>
+
+
+            <form method="POST">
+
+                <div class="form-grid">
+
+
+                    <!-- Donor -->
+                    <div class="form-group">
+
+                        <label>Select Donor</label>
+
+                        <select name="donor_id" required>
+
+                            <option value="">
+                                Select Donor
+                            </option>
+
+                            {% for donor in donors %}
+
+                            <option value="{{ donor.id }}">
+                                {{ donor.first_name }}
+                                {{ donor.last_name }}
+                                (ID: {{ donor.id }})
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Cause -->
+                    <div class="form-group">
+
+                        <label>Select Cause</label>
+
+                        <select name="cause_id" required>
+
+                            <option value="">
+                                Select Cause
+                            </option>
+
+                            {% for cause in causes %}
+
+                            <option value="{{ cause.id }}">
+                                {{ cause.name }}
+                                (ID: {{ cause.id }})
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Amount -->
+                    <div class="form-group">
+
+                        <label>Donation Amount</label>
+
+                        <input
+                            type="number"
+                            name="amount"
+                            step="0.01"
+                            min="1"
+                            required>
+
+                    </div>
+
+
+                    <!-- Payment Method -->
+                    <div class="form-group">
+
+                        <label>Payment Method</label>
+
+                        <select name="payment_method">
+
+                            <option value="">
+                                Select Payment Method
+                            </option>
+
+                            <option value="Cash">
+                                Cash
+                            </option>
+
+                            <option value="UPI">
+                                UPI
+                            </option>
+
+                            <option value="Credit Card">
+                                Credit Card
+                            </option>
+
+                            <option value="Debit Card">
+                                Debit Card
+                            </option>
+
+                            <option value="Bank Transfer">
+                                Bank Transfer
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Receipt Number -->
+                    <div class="form-group full-width">
+
+                        <label>Receipt Number</label>
+
+                        <input
+                            type="text"
+                            name="receipt_number"
+                            placeholder="Example: REC-001">
+
+                    </div>
+
+                </div>
+
+
+                <!-- Form Buttons -->
+                <div class="form-buttons">
+
+                    <a href="{{ url_for('transactions') }}"
+                       class="cancel-btn">
+                        Cancel
+                    </a>
+
+                    <button type="submit"
+                            class="submit-btn">
+                        Save Transaction
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Donation Management System |
+            Developed by Yash Karande
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

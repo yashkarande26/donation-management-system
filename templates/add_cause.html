@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Cause - DonationHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+
+        <a href="{{ url_for('home') }}" class="logo">
+            Donation<span>Hub</span>
+        </a>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('donors') }}">
+                Donors
+            </a>
+
+            <a href="{{ url_for('causes') }}"
+               class="active">
+                Causes
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Add Cause Form -->
+    <section class="donor-form-section">
+
+        <div class="form-container">
+
+            <p class="section-tag">
+                NEW CAUSE
+            </p>
+
+            <h1>Add New Cause</h1>
+
+            <p class="form-description">
+                Enter the cause information below to create a new donation cause.
+            </p>
+
+
+            <form method="POST">
+
+                <div class="form-grid">
+
+                    <!-- Cause Name -->
+                    <div class="form-group">
+                        <label>Cause Name</label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            required>
+                    </div>
+
+
+                    <!-- Target Amount -->
+                    <div class="form-group">
+                        <label>Target Amount</label>
+
+                        <input
+                            type="number"
+                            name="target_amount"
+                            step="0.01"
+                            min="1"
+                            required>
+                    </div>
+
+
+                    <!-- Description -->
+                    <div class="form-group full-width">
+                        <label>Description</label>
+
+                        <textarea
+                            name="description"
+                            rows="4"></textarea>
+                    </div>
+
+
+                    <!-- Category -->
+                    <div class="form-group">
+                        <label>Category</label>
+
+                        <select name="category">
+
+                            <option value="">
+                                Select Category
+                            </option>
+
+                            <option value="Education">
+                                Education
+                            </option>
+
+                            <option value="Healthcare">
+                                Healthcare
+                            </option>
+
+                            <option value="Food">
+                                Food
+                            </option>
+
+                            <option value="Environment">
+                                Environment
+                            </option>
+
+                            <option value="Emergency">
+                                Emergency
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+                    </div>
+
+
+                    <!-- Location -->
+                    <div class="form-group">
+                        <label>Location</label>
+
+                        <input
+                            type="text"
+                            name="location">
+                    </div>
+
+
+                    <!-- Start Date -->
+                    <div class="form-group">
+                        <label>Start Date</label>
+
+                        <input
+                            type="date"
+                            name="start_date">
+                    </div>
+
+
+                    <!-- End Date -->
+                    <div class="form-group">
+                        <label>End Date</label>
+
+                        <input
+                            type="date"
+                            name="end_date">
+                    </div>
+
+                </div>
+
+
+                <!-- Form Buttons -->
+                <div class="form-buttons">
+
+                    <a href="{{ url_for('causes') }}"
+                       class="cancel-btn">
+                        Cancel
+                    </a>
+
+                    <button type="submit"
+                            class="submit-btn">
+                        Save Cause
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Donation Management System |
+            Developed by Yash Karande
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
